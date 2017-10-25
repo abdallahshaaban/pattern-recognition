@@ -1,6 +1,6 @@
 function result =Segmentation(img)
 
-img = imresize(img,[100 100]);
+img = imresize(img,[50 50]);
 
 imageYCbCr = rgb2ycbcr(img);
 imageY = imageYCbCr(:,:,1);
@@ -22,12 +22,12 @@ for	i=1:H
 		end
 	end
 end
- imshow(result);
+
  %Y=edge(result,'sobel');
 % result=imdilate(Y,ones(5,5));
 %Bw_filled=imfill(Y,'holes');
 %result=bwboundaries(Bw_filled);
  
-imshow(result);
+
 
 end
