@@ -1,6 +1,6 @@
 function result =Segmentation(img)
 
-img = imresize(img,[50 50]);
+%img = imresize(img,[50 50]);
 
 imageYCbCr = rgb2ycbcr(img);
 imageY = imageYCbCr(:,:,1);

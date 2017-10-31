@@ -1,8 +1,8 @@
-function result = data_reader(path)
+function result = data_reader(Path)
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 %% Read Dataset
-input_directory = path; %e.g. 'D:\faces'
+input_directory = Path; %e.g. 'D:\faces'
 filenames = dir(fullfile(input_directory, '*.jpg'));
 
 num_images = length(filenames); %number of images found in selected folder
@@ -32,7 +32,7 @@ for i = 1:num_images
     %images(:, i) = image(:); %Column-wise
     
     % save detected face 'image' as .jpg file on a separated folder.
-    result_folder = fullfile('C:\Users\UPDATE\Documents\VIP\FCIS\Pattern Recognition\Task1\pattern-recognition-master\Task1\cropped_images', filenames(i).name);
+    result_folder = fullfile('E:\faces - Copy', filenames(i).name);
     imwrite(cropped_img, result_folder);
 end
 result = 0;
