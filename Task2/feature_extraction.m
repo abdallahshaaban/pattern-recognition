@@ -20,6 +20,17 @@ y=y/(H*W);
 uniformity=Uniformity( x , y );
 %Feature 8
 entropy=Entropy( x , y );
-
+%Glcm Calculations
+d=[0 2];
+GLCMMatrix = Glcm( GImage , d);
+%Feature 9
+GLCMcontrast = GlcmContrast( GLCMMatrix );
+%Feature 10
+GLCMentropy = GlcmEntropy(GLCMMatrix);
+%Feature 11
+GLCMenergy = GlcmEnergy( GLCMMatrix );
+%Feature 12
+GLCMhomogeneity = GlcmHomogeneity( GLCMMatrix);
+Features = [mean variance standardDeviation R skewness kurtosis uniformity entropy GLCMcontrast GLCMentropy GLCMenergy GLCMhomogeneity];
 end
 

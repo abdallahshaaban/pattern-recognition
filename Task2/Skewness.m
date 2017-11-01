@@ -4,9 +4,9 @@ n=H*W;
 Result=0;
 for i=1 : H
     for j=1 : W
-        Result= Result + (Image(i,j) - mean).^3;
+        Result= Result + double(Image(i,j) - mean).^3;
     end
 end
-Result = Result/(n*(SDeviation.^3));
+Result = double(Result)/(n*double(SDeviation.^3));
 end
 

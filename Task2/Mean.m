@@ -7,6 +7,6 @@ for i=1 : H
         Result= Result + Image(i,j);
     end
 end
-Result = Result/n;
+Result = double(Result)/n;
 end
 

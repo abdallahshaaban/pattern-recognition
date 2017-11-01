@@ -1,7 +1,6 @@
 function Result = Glcm( Image , d)
 
-Img = rgb2gray(Image);
-Img = Contrast( Img , 1, 8);
+Img = Contrast( Image , 1, 8);
 Img = round(Img);
 [H W ] = size(Img);
 Mat = zeros(8,8);
