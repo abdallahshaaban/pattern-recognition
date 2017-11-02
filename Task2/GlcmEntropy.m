@@ -7,7 +7,7 @@ for row =1:8
         if(Mat(row,col)==0)
             continue ;
         end;
-        res(row,col) = double(log(Mat(row,col)));
+        res(row,col) = double(log2(Mat(row,col)));
     end
 end
 
