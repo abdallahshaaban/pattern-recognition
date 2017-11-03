@@ -1,5 +1,5 @@
 function Features = feature_extraction( Image )
-GImage = rgb2gray(Image);
+GImage = GetGrayLevelImage(Image);
 [H,W] = size(GImage);
 n = H*W;
 RGImage = double(reshape(GImage,1,n));
