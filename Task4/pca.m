@@ -11,11 +11,10 @@ function result = pca(image)
     end 
     n=H*W;
     mean = sum /n;
-    mx=max max((image));
-    mn = min (min(image));
+
     for row=1:H
     	for col=1:W
-    		image(row col ) = (image(row col )-mean)/mx-mn;
+    		image(row col ) = image(row col )-mean;
 
     	end 
     end 
