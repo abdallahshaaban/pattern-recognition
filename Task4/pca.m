@@ -15,7 +15,7 @@ function result = pca(image)
     mn = min (min(image));
     for row=1:H
     	for col=1:W
-    		image(row col ) = image(row col )-mean;
+    		image(row col ) = (image(row col )-mean)/mx-mn;
 
     	end 
     end 
