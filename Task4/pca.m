@@ -2,6 +2,16 @@ function result = pca(image)
 	image = resize (image ,[50  50]);
 	image = GetGrayLevelImage(image);
 	[H W ]=size(image);
+
+	mx=max(max(image));
+	mn = min(min(image));
+	for row=1:H
+    	for col=1:W
+    		image(row col ) = (image(row col )-mn)/(mx-mn);
+
+    	end 
+    end 
+
 	sum = 0;
 	for row=1:H
     	for col=1:W
