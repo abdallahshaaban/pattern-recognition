@@ -19,7 +19,6 @@ function result = pca(image)
 
     	end 
     end 
-    cov = zeros (H,W);
    %{
    rows = zeros (H,1);
   
@@ -43,7 +42,7 @@ function result = pca(image)
     cov = ones (H,W);	
      for row=1:H
     	for col=1:W
-    		cov (row col) = transpose(image (row :))* image(col : )/n-1;
+    		cov (row col) = transpose(image (row :))* image(col : )/(n-1);
 
     	end 
     end 
