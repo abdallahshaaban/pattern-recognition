@@ -15,10 +15,11 @@ for i=1:d
     FeatureMatrix(:,i) = FeatureMatrix(:,i) - MeansVector(:,i);
 end
 %step 3
-CovMatrix = (FeatureMatrix.')*FeatureMatrix;
+CovMatrix = ((FeatureMatrix.')*FeatureMatrix)/(n-1);
 %step 4
 [EigenVectors  EigenValues] = eig(CovMatrix);
 %step 5
+EigenValues = abs(EigenValues);
 EigenValues = sum(EigenValues);
 EigenVectors = [EigenVectors;EigenValues*-1];
 EigenVectors = sortrows(EigenVectors.',d+1).';
@@ -31,7 +32,7 @@ figure , plot(linspace(1,100,100),EigenValuesCumSum(1,1:100));
 c=0;
 for i=1 : d
     c=c+1;
-    if EigenValuesCumSum(1,i) >=0.9
+    if EigenValuesCumSum(:,i) >=0.9
         break;
     end
 end
