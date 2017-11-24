@@ -1,14 +1,10 @@
 function [Result] = pca(DatasetPath)
 [FeatureMatrix IDs Classes OldFeatures] = GetFeatureMatrix(DatasetPath , 50 , 50);
 FeatureMatrix = double(FeatureMatrix);
-MaxFeatureMatrix = max(FeatureMatrix);
 [n d] = size(FeatureMatrix);
-for i=1:d
-    FeatureMatrix(:,i) = FeatureMatrix(:,i)/MaxFeatureMatrix(:,i);
-end
 %step 1
 MeansVector = sum(FeatureMatrix)/n;
-MeansImage = reshape(MeansVector,[d^0.5 d^0.5]);
+MeansImage = uint8(reshape(MeansVector,[d^0.5 d^0.5]));
 figure , imshow(MeansImage);
 %step 2
 for i=1:d
@@ -19,7 +15,6 @@ CovMatrix = ((FeatureMatrix.')*FeatureMatrix)/(n-1);
 %step 4
 [EigenVectors  EigenValues] = eig(CovMatrix);
 %step 5
-EigenValues = abs(EigenValues);
 EigenValues = sum(EigenValues);
 EigenVectors = [EigenVectors;EigenValues*-1];
 EigenVectors = sortrows(EigenVectors.',d+1).';
