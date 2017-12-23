@@ -17,7 +17,7 @@ for i = 1 : length(srcFiles)
     imshow(Im);
 
     for j = 1 : h
-    	rectangle('Position',Regions(j).BoundingBox,'edgecolor','g','linewidth',2);
+    %rectangle('Position',Regions(j).BoundingBox,'edgecolor','g','linewidth',2);
      name = ''; 
      name = strcat(name,num2str(i));
      name = strcat(name,num2str(j));

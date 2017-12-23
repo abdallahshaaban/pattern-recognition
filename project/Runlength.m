@@ -84,7 +84,7 @@ for k=0:5
             vis(i+1,j+1)=1;
             cnt=cnt+1;
             i=i+1;
-            j=j+1
+            j=j+1;
         end
         
         if(Image(r,c)== k)
@@ -115,7 +115,7 @@ for k=0:5
             vis(i+1,j-1)=1;
             cnt=cnt+1;
             i=i+1;
-            j=j-1
+            j=j-1;
         end
         
         if(Image(r,c)== k)
