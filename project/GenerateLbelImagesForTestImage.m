@@ -20,7 +20,7 @@ function result = GenerateLbelImagesForTestImage(path,n)
     %imshow(Im);
 
     for j = 1 : h
-    	if(Regions(j).Area >((N*M)-1000)||Regions(j).Area<50||j==1)continue;end
+    	if(Regions(j).Area<20)continue;end
     	rectangle('Position',Regions(j).BoundingBox,'edgecolor','g','linewidth',2);
 
      name = ''; 
