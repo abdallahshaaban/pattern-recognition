@@ -8,8 +8,8 @@ for i = 1 : length(srcFiles)
     filename = strcat(Dir,srcFiles(i).name);
     I = imread(filename);
     Filename = strcat(Dir,SrcFiles(i).name);
+    
     Im = imread(Filename);
- 
     [Labels no_objects] = Edgebased(I);
     Regions = regionprops(Labels,'all');
     

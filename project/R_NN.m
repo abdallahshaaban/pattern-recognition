@@ -1,27 +1,40 @@
+function Percentage = R_NN(Ft)
 Testing = csvread('Testing.csv');
 Training = csvread('Training.csv');
 
+if(Ft==1)
+Training(:,5:15)=[];
+Testing(:,5:15)=[];
+end
+
+if(Ft==2)
+Training =  Training(:,5:16);
+Testing  =  Testing(:,5:16);
+end
 
 [N M] = size(Training) ;
 
 %normalization
+vec =  Training(:,1:M-1) ;
+vec2 = Testing(:,1:M-1) ;
+vec =  [vec ; vec2 ] ;
 for i = 1:M-1
-    Mx=max(Testing(:,i));
-    Mn= min(Testing(:,i));
-    Testing(:,i) = (Testing(:,i)-Mean(Testing(:,i))) / (Mx-Mn) ;
-end
-
-for i = 1:M-1
-    Mx=max(Training(:,i));
-    Mn= min(Training(:,i));
-    Training(:,i) = (Training(:,i)-Mean(Training(:,i))) / (Mx-Mn) ;
+    
+    Mx=max(vec(:,i));
+    Mn= min(vec(:,i));
+    Training(:,i) = (Training(:,i)-Mean(vec(:,i))) / (Mx-Mn) ;
+    Testing (:,i) = (Testing (:,i)-Mean(vec(:,i))) / (Mx-Mn) ;
+ 
 end
 
 Bestk = - 1 ;
 BestConfusion = -1;
 BestPercent = -1.0 ;
 
-Kval = 2 ;
+Kval = 25 ;
+
+K = zeros(1,Kval);
+Errors = zeros(1,Kval);
 
 for k = 1:Kval
     
@@ -30,12 +43,15 @@ confusion = zeros(5,5);
     for i = 1 : N
         
         Distances = zeros(25,2);
+        rep = zeros(1,5);
+        rep = double(rep);
         class = 1000;
         
         
         for j = 1 : N
             
             distance = sqrt(sum( (Testing (i ,1:M-1 ) - Training (j,1:M-1)) .* (Testing (i ,1:M-1) - Training (j,1:M-1))));
+            distance = distance * 10 ;
             Distances(j,1)= distance;
             Distances(j,2)= Training(j,M);
             
@@ -43,7 +59,6 @@ confusion = zeros(5,5);
         
         
         Distances = sortrows(Distances);
-        rep = zeros(1,5);
         j=1;
         Mx = -1 ;
         
@@ -57,6 +72,7 @@ confusion = zeros(5,5);
         end
         
         if(Mx == -1)
+            
             continue;
         end
         
@@ -84,6 +100,10 @@ true =sum(diag(confusion));
 
 Percentage = double(true / 25.0)*100;
 
+K(1,k) = k;
+Errors(1,k) = 100 - Percentage ;
+
+
 if( Percentage > BestPercent)
     BestPercent = Percentage ;
     BestConfusion = confusion ;
@@ -92,10 +112,14 @@ end
 
 end
 
+Percentage = BestPercent  ;
 
-BestPercent  
-Bestk 
-    
+figure 
+plot(K,Errors);
+BestPercent
+Bestk
+
+end
     
 
 

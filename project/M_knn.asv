@@ -1,3 +1,5 @@
+function Category = M_knn_TestImage( Testing,Ft)
+
 Testing = csvread('Testing.csv');
 Training = csvread('Training.csv');
 
@@ -5,24 +7,16 @@ Training = csvread('Training.csv');
 [N M] = size(Training) ;
 
 %normalization
-Maxi = 0;
-Mini = 0;
+vec =  Training(:,1:15) ;
+vec2 = Testing(:,1:15) ;
+vec =  [vec ; vec2 ] ;
 for i = 1:M-1
-    Tot = sum(Testing(:,i)) ;
-    Tot = Tot + sum(Training(:,i)) ;
-    Tot = double(Tot / (2*N));
-    Mx=max(Testing(:,i));
-    Mn= min(Testing(:,i));
-    Mx2=max(Testing(:,i));
-    Mn2= min(Testing(:,i));
     
-    if(Mx>Mx2)
-        Maxi=Mx;
-    else
-        Maxi=Mx2;
-    end
-    Testing(:,i) = (Testing(:,i)-Mean(Testing(:,i))) / (Mx-Mn) ;
-    Training(:,i) = (Training(:,i)-Mean(Training(:,i))) / (Mx-Mn)
+    Mx=max(vec(:,i));
+    Mn= min(vec(:,i));
+    Training(:,i) = (Training(:,i)-Mean(vec(:,i))) / (Mx-Mn) ;
+    Testing (:,i) = (Testing (:,i)-Mean(vec(:,i))) / (Mx-Mn) ;
+ 
 end
 
 
@@ -107,7 +101,7 @@ end
 
 BestPercent  
 Bestk 
-    
+end
     
 
 

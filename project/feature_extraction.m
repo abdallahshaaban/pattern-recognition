@@ -34,7 +34,7 @@ Features  = double(res) ;
 end
 
 if (n==3)
-	glcm = ( Glcm( Image , [0 1]) + Glcm( Image , [1 0]) + Glcm( Image , [1 1]) ) / 3 ;
+glcm = ( Glcm( Image , [0 1]) + Glcm( Image , [1 0]) + Glcm( Image , [1 1]) ) / 3 ;
 Homogeneity = GlcmHomogeneity( glcm ) ;
 entropy = GlcmEntropy(glcm) ;
 energy = GlcmEnergy( glcm ) ;

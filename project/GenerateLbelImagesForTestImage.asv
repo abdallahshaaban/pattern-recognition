@@ -49,19 +49,12 @@ function result = GenerateLbelImagesForTestImage(path,Ft,Cls)
     miny=round(miny);
     
      if(cat==1)
-         rectangle('Position',Regions(j).BoundingBox,'edgecolor','r','linewidth',2);         
-     end
-     if(cat==2)
-         rectangle('Position',Regions(j).BoundingBox,'edgecolor','g','linewidth',2); 
-     end
-     if(cat==3)
-         rectangle('Position',Regions(j).BoundingBox,'edgecolor','b','linewidth',2); 
-     end
-     if(cat==4)
-         rectangle('Position',Regions(j).BoundingBox,'edgecolor','k','linewidth',2); 
-     end
-     if(cat==5)
-         rectangle('Position',Regions(j).BoundingBox,'edgecolor','y','linewidth',2); 
+         rectangle('Position',Regions(j).BoundingBox,'edgecolor','g','linewidth',2);
+         Imgs = imread('cat.jpg');
+         I(miny:miny+19-1,miny:miny+19-1) = Imgs(1:19,1:19);
+         imshow(I);
+         rectangle('Position',Regions(j).BoundingBox,'edgecolor','g','linewidth',2);
+         
      end
      
      
